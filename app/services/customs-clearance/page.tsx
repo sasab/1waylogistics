@@ -12,13 +12,23 @@ export default function CustomsClearancePage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-orange-600 to-amber-800 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <motion.div
-            animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
-            transition={{ duration: 20, repeat: Infinity }}
-            className="absolute top-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl"
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: 'url(/images/customs.png)',
+              opacity: 0.7
+            }}
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-600 to-amber-800 opacity-30" />
+          <div className="absolute inset-0 opacity-20">
+            <motion.div
+              animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
+              transition={{ duration: 20, repeat: Infinity }}
+              className="absolute top-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl"
+            />
+          </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

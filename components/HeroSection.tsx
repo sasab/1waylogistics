@@ -1,19 +1,80 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ArrowRight, Globe, Truck, Ship, Plane } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Globe, Truck, Ship, Plane, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const carouselImages = [
+  '/images/for_home_page_all_vehicles.png',
+  '/images/home_page_2_all_vehicles.png',
+  '/images/logistics.png',
+  '/images/containers.png',
+  '/images/air1.png',
+  '/images/delivery_van2.png',
+
+
+];
 
 export default function HeroSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Auto-scroll every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handlePrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
+  };
+
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600">
+      {/* Background Image Carousel with Blend */}
+      <div className="absolute inset-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.7 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${carouselImages[currentIndex]})`,
+            }}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 opacity-30" />
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
           <div className="absolute top-40 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
           <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         </div>
       </div>
+
+      {/* Carousel Navigation Buttons */}
+      <button
+        onClick={handlePrevious}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm p-2 rounded-full transition-all group"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+      </button>
+      <button
+        onClick={handleNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm p-2 rounded-full transition-all group"
+        aria-label="Next image"
+      >
+        <ChevronRight className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+      </button>
 
       {/* Floating Icons */}
       <motion.div

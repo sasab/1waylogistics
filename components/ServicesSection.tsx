@@ -14,6 +14,7 @@ const services = [
     features: ['Same-day delivery', 'Corporate rates', 'Packaging services', 'Door-to-door'],
     gradient: 'from-blue-500 to-blue-600',
     link: '/services/express-courier',
+    image: '/images/express-courier.png',
   },
   {
     icon: Truck,
@@ -24,6 +25,7 @@ const services = [
     features: ['Singapore-Malaysia-Thailand', 'Customs compliance', 'Expert handling', 'Trusted network'],
     gradient: 'from-purple-500 to-purple-600',
     link: '/services/cross-border',
+    image: '/images/trucks.png',
   },
   {
     icon: Plane,
@@ -34,6 +36,7 @@ const services = [
     features: ['Global coverage', 'IATA certified', 'AOG/NFO handling', 'Live tracking'],
     gradient: 'from-red-500 to-red-600',
     link: '/services/air-freight',
+    image: '/images/air_frieght.png',
   },
   {
     icon: Ship,
@@ -44,6 +47,7 @@ const services = [
     features: ['FCL & LCL', 'Worldwide ports', 'Competitive pricing', 'Secure handling'],
     gradient: 'from-cyan-500 to-cyan-600',
     link: '/services/ocean-freight',
+    image: '/images/big_ship_with_containers.png',
   },
   {
     icon: Warehouse,
@@ -54,6 +58,7 @@ const services = [
     features: ['Climate control', '24/7 security', 'Inventory management', 'Flexible storage'],
     gradient: 'from-green-500 to-green-600',
     link: '/services/warehousing',
+    image: '/images/ware_house.png',
   },
   {
     icon: FileCheck,
@@ -64,6 +69,7 @@ const services = [
     features: ['Documentation support', 'Regulatory compliance', 'Fast processing', 'Expert consultation'],
     gradient: 'from-orange-500 to-orange-600',
     link: '/services/customs-clearance',
+    image: '/images/customs.png',
   },
 ];
 
@@ -111,7 +117,18 @@ export default function ServicesSection() {
             >
               <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 h-full">
                 {/* Icon Header */}
-                <div className={`bg-gradient-to-r ${service.gradient} p-8 text-white relative overflow-hidden`}>
+                <div className={`relative p-8 text-white overflow-hidden`}>
+                  {/* Background Image with Blend */}
+                  <div className="absolute inset-0">
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                      style={{
+                        backgroundImage: `url(${service.image})`,
+                        opacity: 0.7
+                      }}
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient}`} style={{ opacity: 0.15 }} />
+                  </div>
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16" />
                   <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12" />
                   <service.icon className="w-12 h-12 mb-4 relative z-10" />
