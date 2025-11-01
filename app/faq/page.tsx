@@ -175,7 +175,18 @@ export default function FAQPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden">
+            {/* Hero Section */}
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: 'url(/images/FAQ.png)',
+              opacity: 0.7
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 opacity-30" />
+        </div>
         <div className="absolute inset-0 opacity-20">
           <motion.div
             animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 0] }}

@@ -36,7 +36,19 @@ export default function Footer({
   ];
 
   return (
-    <footer className={`bg-gradient-to-br ${gradientFrom} ${gradientVia} ${gradientTo} text-white relative overflow-hidden`}>
+    <footer className={`relative text-white overflow-hidden`}>
+      {/* Background Image with Blend */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/images/train_cargo.png)',
+            opacity: 0.7
+          }}
+        />
+        <div className={`absolute inset-0 bg-gradient-to-br ${gradientFrom} ${gradientVia} ${gradientTo} opacity-30`} />
+      </div>
+
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-10">
         <motion.div

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { FileText, Clock, DollarSign, CheckCircle, ArrowRight, Phone, Mail } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import QuoteSection from '@/components/QuoteSection';
@@ -11,18 +12,28 @@ export default function QuotePage() {
       <Navbar />
       
       {/* Hero Section */}
-      {/* <section className="relative pt-32 pb-12 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <motion.div
-            animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
-            transition={{ duration: 20, repeat: Infinity }}
-            className="absolute top-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl"
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: 'url(/images/get_quote.png)',
+              opacity: 0.7
+            }}
           />
-          <motion.div
-            animate={{ x: [0, -100, 0], y: [0, 50, 0] }}
-            transition={{ duration: 25, repeat: Infinity }}
-            className="absolute bottom-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl"
-          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 opacity-30" />
+          <div className="absolute inset-0 opacity-20">
+            <motion.div
+              animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
+              transition={{ duration: 20, repeat: Infinity }}
+              className="absolute top-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl"
+            />
+            <motion.div
+              animate={{ x: [0, -100, 0], y: [0, 50, 0] }}
+              transition={{ duration: 25, repeat: Infinity }}
+              className="absolute bottom-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl"
+            />
+          </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -31,15 +42,44 @@ export default function QuotePage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center text-white"
           >
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full mb-6 border border-white/20">
+              <FileText className="w-6 h-6" />
+              <span className="font-semibold">Get Your Custom Quote</span>
+            </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Get Your Custom Quote
+              Fast, Competitive Quotes
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-pink-200">
+                Tailored to Your Needs
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
               Fill out the form below and our team will provide you with a competitive quote within 24 hours
             </p>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+              {[
+                { icon: Clock, label: '24hr Response', color: 'text-blue-300' },
+                { icon: DollarSign, label: 'Best Rates', color: 'text-green-300' },
+                { icon: CheckCircle, label: 'No Obligation', color: 'text-purple-300' },
+                { icon: Phone, label: '24/7 Support', color: 'text-pink-300' },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20"
+                >
+                  <item.icon className={`w-8 h-8 ${item.color} mx-auto mb-2`} />
+                  <p className="text-white font-semibold text-sm">{item.label}</p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
-      </section> */}
+      </section>
 
       {/* Quote Form Section */}
       <QuoteSection />
